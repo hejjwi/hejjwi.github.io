@@ -26,7 +26,7 @@ description              : "**해쭈이랩스(Hejjwi Labs)**는 창의적 아이
                             누구나 쉽게 사용할 수 있는 디지털 솔루션을 제공합니다. \n
                             해쭈이랩스에서 더 나은 오늘을 만들어 보세요!"
 url                      : "https://hejjwi.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : "/onulpanner" # the subpath of your site, e.g. "/blog"
+baseurl                  : "/onulplanner" # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # path of fallback teaser image, e.g. "/assets/images/500x300.png"
 logo                     : # path of logo image to display in the masthead, e.g. "/assets/images/88x88.png"
