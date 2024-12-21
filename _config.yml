@@ -12,16 +12,19 @@
 
 # theme                  : "minimal-mistakes-jekyll"
 # remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin    : "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+minimal_mistakes_skin    : "dark" # "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
 
 # Site Settings
 locale                   : "en-US"
 rtl                      : # true, false (default) # turns direction of the page into right to left for RTL languages
-title                    : "Site Title"
+title                    : "해쭈이 Labs"
 title_separator          : "-"
 subtitle                 : # site tagline that appears below site title in masthead
-name                     : "Your Name"
-description              : "An amazing website."
+name                     : "정해준"
+description              : "**해쭈이랩스(Hejjwi Labs)**는 창의적 아이디어와 기술이 만나는 실험적 공간입니다. \n
+                            우리는 일상 속 문제를 해결하고 생산성을 높이는 유용한 도구와 서비스를 개발하며, \n
+                            누구나 쉽게 사용할 수 있는 디지털 솔루션을 제공합니다. \n
+                            해쭈이랩스에서 더 나은 오늘을 만들어 보세요!"
 url                      : "https://hejjwi.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
