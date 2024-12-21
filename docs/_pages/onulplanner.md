@@ -1,7 +1,7 @@
 ---
 layout: single
 title: "스케줄 관리"
-permalink: /docs/_pages/onulplanner/
+permalink: /onulplanner/
 classes: wide
 ---
 
