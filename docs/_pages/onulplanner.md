@@ -1,6 +1,6 @@
 ---
 layout: single
-title: "스케줄 관리"
+title: "Onul Planner"
 permalink: /onulplanner/
 classes: wide
 ---
