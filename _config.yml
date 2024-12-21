@@ -168,7 +168,7 @@ footer:
 include:
   - .htaccess
   - _pages
-  - assets/css/onulplanner.css
+  # - assets/css/onulplanner.css
 exclude:
   - "*.sublime-project"
   - "*.sublime-workspace"
