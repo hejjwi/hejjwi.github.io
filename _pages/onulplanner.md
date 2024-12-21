@@ -3,6 +3,7 @@ layout: single
 title: "Onul Planner"
 permalink: /onulplanner/
 classes: wide
+hidden: true
 ---
 
 <div id="onulplanner">
