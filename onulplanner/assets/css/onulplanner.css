@@ -30,7 +30,7 @@ select {
 .time-slots {
   display: flex;
   flex-direction: column; /* Arrange time blocks vertically */
-  gap: 5px; /* Spacing between time blocks */
+  gap: 1px; /* Spacing between time blocks */
   width: 100%;
   max-width: 500px;
 }
@@ -41,20 +41,10 @@ select {
   align-items: center;
   justify-content: space-between;
   border: 1px solid mix(#fff, #252a34, 20%);
-  padding: 10px;
+  padding: 5px;
   border-radius: 4px;
   background-color: #252a34; /* Light background for time slots */
   font-family: 'Nanum Gothic', sans-serif; /* Apply the Korean font to time slots */
-}
-
-.time-slot .time-label {
-  font-weight: bold;
-  padding: 5px;
-  border-radius: 4px;
-  background-color: #252a34; /* Light gray background for time labels */
-  flex: 1; /* Allow time label to take up space */
-  text-align: center;
-  font-family: 'Nanum Gothic', sans-serif; /* Apply the Korean font to labels */
 }
 
 .time-slot input[type="text"] {
