@@ -1,12 +1,12 @@
 ---
 layout: single
-title: "**Onul**Planner"
+title: ""
 description: "A custom scheduling page based on Minimal Mistakes theme."
 permalink: /onulplanner/
 ---
 
 <div class="page__content">
-    <h1>Onul Planner</h1>
+    <h1>하루의 시작은, "오늘이"</h1>
     <div class="planner-container">
         <form>
             <label for="start-time">Start Time:</label>

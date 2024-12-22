@@ -8,8 +8,8 @@ function generateTimeSlots() {
 
     const startParts = startTime.split(":"),
           endParts = endTime.split(":"),
-          start = new Date(0, 0, 0, parseInt(startParts[0]), parseInt(startParts[1])),
-          end = new Date(0, 0, 0, parseInt(endParts[0]), parseInt(endParts[1]));
+          start = new Date(current.getFullYear(), current.getMonth(), current.getDate(), parseInt(startParts[0]), parseInt(startParts[1])),
+          end = new Date(current.getFullYear(), current.getMonth(), current.getDate(), parseInt(endParts[0]), parseInt(endParts[1]));
 
     const intervalDropdown = document.getElementById("interval");
 
