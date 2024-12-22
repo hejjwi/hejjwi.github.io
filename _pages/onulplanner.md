@@ -7,7 +7,7 @@ toc: false
 classes: wide
 ---
 
-<div id="onulplanner">
+<div id="하루의 시작은 '오늘이'">
     <h1>하루의 시작은 '오늘이'</h1>
     <div id="time-selector">
         <label for="time-interval">시간 간격 선택:</label>
