@@ -41,3 +41,16 @@
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+select {
+  background-color: #f0f0f0; /* Light gray background for dropdowns */
+  color: black; /* Black text for better visibility */
+  border: 1px solid #ccc; /* Light border */
+  padding: 5px;
+  border-radius: 4px;
+}
+
+h1 {
+  /* 수평 중앙 정렬하기 */
+  text-align: center;
+}
