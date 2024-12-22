@@ -2,7 +2,7 @@
 layout: single
 title: "**Onul**Planner"
 description: "A custom scheduling page based on Minimal Mistakes theme."
-permalink: /onul-planner/
+permalink: /onulplanner/
 ---
 
 <div class="page__content">
