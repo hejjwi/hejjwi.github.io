@@ -16,6 +16,29 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    // 현재 시간을 기반으로 다음 30분 단위 계산
+    function getNext30MinutePreset() {
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+
+        // 30분 단위로 올림
+        minutes = minutes > 0 ? Math.ceil(minutes / 30) * 30 : 30;
+
+        // 다음 시간으로 넘기기
+        if (minutes === 60) {
+            minutes = 0;
+            hours += 1;
+        }
+
+        // 24시간제 조정
+        if (hours === 24) {
+            hours = 0;
+        }
+
+        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    }
+
     populateTimeDropdown(startTimeDropdown);
     populateTimeDropdown(endTimeDropdown);
 
@@ -23,7 +46,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const current = new Date();
     const defaultStartHour = current.getHours();
     const defaultStartMinute = Math.floor(current.getMinutes() / 30) * 30; // Round to nearest 30 minutes
-    startTimeDropdown.value = `${String(defaultStartHour).padStart(2, '0')}:${String(defaultStartMinute).padStart(2, '0')}`;
+    //startTimeDropdown.value = `${String(defaultStartHour).padStart(2, '0')}:${String(defaultStartMinute).padStart(2, '0')}`;
+    const next30MinutePreset = getNext30MinutePreset();
+    startTimeDropdown.value = next30MinutePreset;
     endTimeDropdown.value = "12:00";
 
     // Populate interval dropdown based on start and end times
