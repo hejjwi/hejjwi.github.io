@@ -118,7 +118,8 @@ analytics:
 author:
   name             : "정해준"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an **amazing** person."
+  bio              : "I am an **amazing** person.\n
+                      I am a boy."
   location         : "Seoul"
   email            :
   links:
