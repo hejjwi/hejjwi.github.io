@@ -1,7 +1,7 @@
 /* Styles for Onul Planner */
 body {
-  background-color: white; /* Set background to white */
-  color: black; /* Set text color to black */
+  background-color: lighten(#252a34, 5%); /* Set background to white */
+  color: #eaeaea; /* Set text color to black */
   font-family: 'Nanum Gothic', sans-serif; /* Use a beautiful Korean font */
 }
 
@@ -19,9 +19,9 @@ h1 {
 }
 
 select {
-  background-color: #f0f0f0; /* Light gray background for dropdowns */
+  background-color: #252a34; /* Light gray background for dropdowns */
   color: black; /* Black text for better visibility */
-  border: 1px solid #ccc; /* Light border */
+  border: 1px solid mix(#fff, #252a34, 20%); /* Light border */
   padding: 5px;
   border-radius: 4px;
   font-family: 'Nanum Gothic', sans-serif; /* Apply the Korean font to dropdowns */
@@ -40,10 +40,10 @@ select {
   flex-direction: row; /* Align time and task input horizontally */
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #ccc;
+  border: 1px solid mix(#fff, #252a34, 20%);
   padding: 10px;
   border-radius: 4px;
-  background-color: #f9f9f9; /* Light background for time slots */
+  background-color: #252a34; /* Light background for time slots */
   font-family: 'Nanum Gothic', sans-serif; /* Apply the Korean font to time slots */
 }
 
@@ -51,7 +51,7 @@ select {
   font-weight: bold;
   padding: 5px;
   border-radius: 4px;
-  background-color: #e6e6e6; /* Light gray background for time labels */
+  background-color: #252a34; /* Light gray background for time labels */
   flex: 1; /* Allow time label to take up space */
   text-align: center;
   font-family: 'Nanum Gothic', sans-serif; /* Apply the Korean font to labels */
@@ -60,7 +60,7 @@ select {
 .time-slot input[type="text"] {
   flex: 2; /* Allow input field to take more space */
   padding: 5px;
-  border: 1px solid #ccc;
+  border: 1px solid mix(#fff, #252a34, 20%);
   border-radius: 4px;
   font-family: 'Nanum Gothic', sans-serif; /* Apply the Korean font to input fields */
 }
