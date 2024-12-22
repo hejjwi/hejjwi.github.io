@@ -1,26 +1,21 @@
 /* Styles for Onul Planner */
+body {
+  background-color: white; /* Set background to white */
+  color: black; /* Set text color to black */
+  font-family: 'Nanum Gothic', sans-serif; /* Use a beautiful Korean font */
+}
+
+h1 {
+  text-align: center; /* Center align the header */
+  margin: 20px 0; /* Add some spacing above and below the header */
+  font-family: 'Nanum Gothic', sans-serif; /* Apply the Korean font to headers */
+}
+
 .planner-container {
   margin: 20px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Arial', sans-serif; /* Arial로 글씨체 변경 */
-}
-
-.time-slot {
-  margin-bottom: 10px;
-  font-family: 'Arial', sans-serif; /* Arial로 글씨체 변경 */
-
-}
-
-.time-slots {
-  display: grid;
-  margin-top: 20px;
-  grid-template-columns: 1fr 2fr; /* Two columns: one for time, one for todo list */
-  gap: 10px; /* Spacing between columns */
-  width: 100%;
-  max-width: 600px;
-  font-family: 'Arial', sans-serif; /* Arial로 글씨체 변경 */
 }
 
 select {
@@ -29,11 +24,43 @@ select {
   border: 1px solid #ccc; /* Light border */
   padding: 5px;
   border-radius: 4px;
-  font-family: 'Arial', sans-serif; /* Arial로 글씨체 변경 */
+  font-family: 'Nanum Gothic', sans-serif; /* Apply the Korean font to dropdowns */
 }
 
-h1 {
-  /* 수평 중앙 정렬하기 */
+.time-slots {
+  display: flex;
+  flex-direction: column; /* Arrange time blocks vertically */
+  gap: 10px; /* Spacing between time blocks */
+  width: 100%;
+  max-width: 600px;
+}
+
+.time-slot {
+  display: flex;
+  flex-direction: row; /* Align time and task input horizontally */
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #f9f9f9; /* Light background for time slots */
+  font-family: 'Nanum Gothic', sans-serif; /* Apply the Korean font to time slots */
+}
+
+.time-slot .time-label {
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 4px;
+  background-color: #e6e6e6; /* Light gray background for time labels */
+  flex: 1; /* Allow time label to take up space */
   text-align: center;
-  font-family: 'Arial', sans-serif; /* Arial로 글씨체 변경 */
+  font-family: 'Nanum Gothic', sans-serif; /* Apply the Korean font to labels */
+}
+
+.time-slot input[type="text"] {
+  flex: 2; /* Allow input field to take more space */
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Nanum Gothic', sans-serif; /* Apply the Korean font to input fields */
 }
