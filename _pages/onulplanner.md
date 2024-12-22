@@ -1,13 +1,13 @@
 ---
-layout: single
+layout: onulpage
 title: "Onul Planner"
 permalink: /onulplanner/
 classes: wide
 hidden: true
 ---
 
-<div id="onulplanner">
-    <h1>스케줄 관리</h1>
+<div id="오늘이">
+    <h1>하루 스케줄 관리</h1>
     <ul id="schedule-list">
         <!-- 동적으로 추가될 일정 목록 -->
     </ul>
