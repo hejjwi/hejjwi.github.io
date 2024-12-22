@@ -1,28 +1,38 @@
 ---
 layout: single
 title: "Onul Planner"
+description: "A custom scheduling page based on Daily Routine"
 permalink: /onulplanner/
 hidden: true
-toc: false
-classes: wide
 ---
 
-<div id="하루의 시작은 '오늘이'">
-    <h1>하루의 시작은 '오늘이'</h1>
-    <div id="time-selector">
-        <label for="time-interval">시간 간격 선택:</label>
-        <select id="time-interval">
-            <option value="5">5분</option>
-            <option value="15">15분</option>
-            <option value="30">30분</option>
-            <option value="60" selected>1시간</option>
-            <option value="120">2시간</option>
-        </select>
-    </div>
-    <div id="schedule">
-        <!-- 스케줄 시간이 동적으로 추가됩니다 -->
+<div class="page__content">
+    <h1>Onul Planner</h1>
+    <div class="planner-container">
+        <form>
+            <label for="start-time">Start Time:</label>
+            <input type="time" id="start-time" required>
+
+            <label for="end-time">End Time:</label>
+            <input type="time" id="end-time" required>
+
+            <label for="interval">Interval (minutes):</label>
+            <select id="interval">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="30">30</option>
+                <option value="60">60</option>
+            </select>
+
+            <button type="button" onclick="generateTimeSlots()">Generate</button>
+        </form>
+
+        <div id="time-slots" class="time-slots">
+            <!-- Generated time slots will appear here -->
+        </div>
     </div>
 </div>
 
-<script src="{{ site.baseurl }}/assets/js/onulplanner.js"></script>
-<link rel="stylesheet" href="{{ site.baseurl }}/assets/css/onulplanner.css">
+<script src="assets/js/onulplanner.js"></script>
+<link rel="stylesheet" href="assets/css/onulplanner.css">
