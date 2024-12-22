@@ -1,6 +1,6 @@
 /* Styles for Onul Planner */
 body {
-  background-color: lighten(#252a34, 5%); /* Set background to white */
+  background-color: lighten(#252a34, 20%); /* Set background to white */
   color: #eaeaea; /* Set text color to black */
   font-family: 'Nanum Gothic', sans-serif; /* Use a beautiful Korean font */
 }
@@ -19,7 +19,7 @@ h1 {
 }
 
 select {
-  background-color: #252a34; /* Light gray background for dropdowns */
+  background-color: #ffffff; /* Light gray background for dropdowns */
   color: black; /* Black text for better visibility */
   border: 1px solid mix(#fff, #252a34, 20%); /* Light border */
   padding: 5px;
@@ -30,9 +30,9 @@ select {
 .time-slots {
   display: flex;
   flex-direction: column; /* Arrange time blocks vertically */
-  gap: 10px; /* Spacing between time blocks */
+  gap: 5px; /* Spacing between time blocks */
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
 }
 
 .time-slot {
