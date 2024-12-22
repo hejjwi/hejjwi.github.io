@@ -4,10 +4,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-family: 'Arial', sans-serif; /* Arial로 글씨체 변경 */
 }
 
 .time-slot {
   margin-bottom: 10px;
+  font-family: 'Arial', sans-serif; /* Arial로 글씨체 변경 */
 
 }
 
@@ -18,6 +20,7 @@
   gap: 10px; /* Spacing between columns */
   width: 100%;
   max-width: 600px;
+  font-family: 'Arial', sans-serif; /* Arial로 글씨체 변경 */
 }
 
 select {
@@ -26,9 +29,11 @@ select {
   border: 1px solid #ccc; /* Light border */
   padding: 5px;
   border-radius: 4px;
+  font-family: 'Arial', sans-serif; /* Arial로 글씨체 변경 */
 }
 
 h1 {
   /* 수평 중앙 정렬하기 */
   text-align: center;
+  font-family: 'Arial', sans-serif; /* Arial로 글씨체 변경 */
 }
