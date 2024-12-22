@@ -1,31 +1,24 @@
 ---
 layout: single
-title: ""
-description: "A custom scheduling page based on Daily Routine"
-permalink: /onulplanner/
-hidden: true
+title: "**Onul**Planner"
+description: "A custom scheduling page based on Minimal Mistakes theme."
+permalink: /onul-planner/
 ---
 
 <div class="page__content">
-    <h1>하루의 시작은, '오늘이'</h1>
+    <h1>Onul Planner</h1>
     <div class="planner-container">
         <form>
             <label for="start-time">Start Time:</label>
-            <input type="time" id="start-time" required>
+            <select id="start-time"></select>
 
             <label for="end-time">End Time:</label>
-            <input type="time" id="end-time" required>
+            <select id="end-time"></select>
 
             <label for="interval">Interval (minutes):</label>
-            <select id="interval">
-                <option value="5">5</option>
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="30">30</option>
-                <option value="60">60</option>
-            </select>
+            <select id="interval"></select>
 
-            <button type="button" onclick="generateTimeSlots()">Generate</button>
+            <button type="button" id="generate-button">Generate</button>
         </form>
 
         <div id="time-slots" class="time-slots">
