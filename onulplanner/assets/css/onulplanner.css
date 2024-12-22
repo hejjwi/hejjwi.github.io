@@ -12,11 +12,27 @@
 }
 
 .time-slots {
+  display: grid;
   margin-top: 20px;
   grid-template-columns: 1fr 2fr; /* Two columns: one for time, one for todo list */
   gap: 10px; /* Spacing between columns */
   width: 100%;
   max-width: 600px;
+}
+
+.time-slot input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.time-slot .time-label {
+  font-weight: bold;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #00000000; /* Light gray background for time labels */
 }
 
 .time-slot input[type="text"] {

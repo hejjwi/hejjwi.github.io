@@ -27,5 +27,10 @@ permalink: /onulplanner/
     </div>
 </div>
 
+h1 {
+  /* 수평 중앙 정렬하기 */
+  text-align: center;
+}
+
 <script src="assets/js/onulplanner.js"></script>
 <link rel="stylesheet" href="assets/css/onulplanner.css">
