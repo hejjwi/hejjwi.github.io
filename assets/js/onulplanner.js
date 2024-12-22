@@ -1,52 +1,79 @@
-function generateTimeSlots() {
+document.addEventListener("DOMContentLoaded", function () {
+    const startTimeDropdown = document.getElementById("start-time");
+    const endTimeDropdown = document.getElementById("end-time");
+    const intervalDropdown = document.getElementById("interval");
+    const generateButton = document.getElementById("generate-button");
+
+    // Populate time dropdowns with 30-minute increments
+    function populateTimeDropdown(dropdown) {
+        dropdown.innerHTML = ""; // Clear existing options
+        for (let hour = 0; hour < 24; hour++) {
+            for (let minute of [0, 30]) {
+                const time = `${String(hour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+                const option = new Option(formatAMPM(time), time);
+                dropdown.add(option);
+            }
+        }
+    }
+
+    populateTimeDropdown(startTimeDropdown);
+    populateTimeDropdown(endTimeDropdown);
+
+    // Set default preset (current time rounded to nearest 30 mins, and end time as 12:00 PM)
     const current = new Date();
     const defaultStartHour = current.getHours();
     const defaultStartMinute = Math.floor(current.getMinutes() / 30) * 30; // Round to nearest 30 minutes
+    startTimeDropdown.value = `${String(defaultStartHour).padStart(2, '0')}:${String(defaultStartMinute).padStart(2, '0')}`;
+    endTimeDropdown.value = "12:00";
 
-    const startTime = document.getElementById("start-time").value || `${String(defaultStartHour).padStart(2, '0')}:${String(defaultStartMinute).padStart(2, '0')}`;
-    const endTime = document.getElementById("end-time").value || "12:00";
+    // Populate interval dropdown based on start and end times
+    function populateIntervals() {
+        intervalDropdown.innerHTML = ""; // Clear existing intervals
+        const startTime = new Date(`1970-01-01T${startTimeDropdown.value}:00`);
+        const endTime = new Date(`1970-01-01T${endTimeDropdown.value}:00`);
+        const maxInterval = Math.floor((endTime - startTime) / (1000 * 60)); // Calculate max interval in minutes
 
-    const startParts = startTime.split(":"),
-          endParts = endTime.split(":"),
-          start = new Date(current.getFullYear(), current.getMonth(), current.getDate(), parseInt(startParts[0]), parseInt(startParts[1])),
-          end = new Date(current.getFullYear(), current.getMonth(), current.getDate(), parseInt(endParts[0]), parseInt(endParts[1]));
-
-    const intervalDropdown = document.getElementById("interval");
-
-    // Clear previous interval options
-    intervalDropdown.innerHTML = "";
-
-    // Calculate maximum interval in minutes
-    const maxInterval = Math.floor((end - start) / (1000 * 60));
-
-    // Populate interval dropdown with options from 5 minutes to maxInterval
-    for (let i = 5; i <= maxInterval; i += 5) {
-        const option = document.createElement("option");
-        option.value = i;
-        option.textContent = `${i} minutes`;
-        intervalDropdown.appendChild(option);
+        for (let i = 5; i <= maxInterval; i += 5) {
+            const option = new Option(`${i} minutes`, i);
+            intervalDropdown.add(option);
+        }
     }
 
-    const interval = parseInt(intervalDropdown.value) || 30;
-    const container = document.getElementById("time-slots");
+    // Update intervals when start or end time changes
+    startTimeDropdown.addEventListener("change", populateIntervals);
+    endTimeDropdown.addEventListener("change", populateIntervals);
 
-    container.innerHTML = ""; // Clear previous slots
+    // Initial interval population
+    populateIntervals();
 
-    if (start >= end) {
-        alert("End time must be later than start time.");
-        return;
+    // Generate time slots
+    generateButton.addEventListener("click", function () {
+        const container = document.getElementById("time-slots");
+        container.innerHTML = ""; // Clear previous slots
+
+        const startTime = new Date(`1970-01-01T${startTimeDropdown.value}:00`);
+        const endTime = new Date(`1970-01-01T${endTimeDropdown.value}:00`);
+        const interval = parseInt(intervalDropdown.value);
+
+        if (startTime >= endTime) {
+            alert("End time must be later than start time.");
+            return;
+        }
+
+        for (let time = startTime; time < endTime; time.setMinutes(time.getMinutes() + interval)) {
+            const timeStr = formatAMPM(`${String(time.getHours()).padStart(2, '0')}:${String(time.getMinutes()).padStart(2, '0')}`);
+            const input = document.createElement("div");
+            input.className = "time-slot";
+            input.innerHTML = `${timeStr} - <input type="text" placeholder="Enter task here">`;
+            container.appendChild(input);
+        }
+    });
+
+    // Format time to AM/PM
+    function formatAMPM(time) {
+        const [hour, minute] = time.split(":").map(Number);
+        const ampm = hour >= 12 ? "PM" : "AM";
+        const formattedHour = hour % 12 || 12;
+        return `${formattedHour}:${String(minute).padStart(2, '0')} ${ampm}`;
     }
-
-    for (let time = start; time < end; time.setMinutes(time.getMinutes() + interval)) {
-        const hours = time.getHours();
-        const minutes = time.getMinutes().toString().padStart(2, '0');
-        const ampm = hours >= 12 ? 'PM' : 'AM';
-        const formattedHours = hours % 12 || 12; // Convert 0 to 12 for AM/PM format
-        const timeStr = `${formattedHours}:${minutes} ${ampm}`;
-
-        const input = document.createElement("div");
-        input.className = "time-slot";
-        input.innerHTML = `${timeStr} - <input type="text" placeholder="Enter task here">`;
-        container.appendChild(input);
-    }
-}
+});
