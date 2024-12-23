@@ -32,6 +32,34 @@ document.addEventListener("DOMContentLoaded", function () {
         return `${String(newHour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
     }
 
+    // Populate interval dropdown with dynamic intervals
+    function populateIntervals() {
+        intervalDropdown.innerHTML = ""; // Clear existing options
+        const intervals = [
+            { label: "5 minutes", value: 5 },
+            { label: "15 minutes", value: 15 },
+            { label: "30 minutes", value: 30 }
+        ];
+
+        const startTime = new Date(`1970-01-01T${startTimeDropdown.value}:00`);
+        const endTime = new Date(`1970-01-01T${endTimeDropdown.value}:00`);
+        const maxInterval = Math.floor((endTime - startTime) / (1000 * 60));
+
+        if (maxInterval >= 60) {
+            for (let i = 60; i <= maxInterval; i += 30) {
+                const hours = Math.floor(i / 60);
+                const minutes = i % 60;
+                const label = `${hours > 0 ? hours + " hour" + (hours > 1 ? "s" : "") : ""}${minutes > 0 ? (hours > 0 ? " " : "") + minutes + " minutes" : ""}`;
+                intervals.push({ label, value: i });
+            }
+        }
+
+        intervals.forEach(interval => {
+            const option = new Option(interval.label, interval.value);
+            intervalDropdown.add(option);
+        });
+    }
+
     // Generate time slots
     generateButton.addEventListener("click", function () {
         const container = document.getElementById("time-slots");
@@ -86,4 +114,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     startTimeDropdown.value = defaultStartTime;
     endTimeDropdown.value = defaultEndTime;
+
+    // Populate interval dropdown initially
+    populateIntervals();
+
+    // Update intervals when start or end time changes
+    startTimeDropdown.addEventListener("change", populateIntervals);
+    endTimeDropdown.addEventListener("change", populateIntervals);
 });
