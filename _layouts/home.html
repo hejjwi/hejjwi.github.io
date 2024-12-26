@@ -3,14 +3,7 @@ layout: archive
 ---
 
 {{ content }}
-{% for page in site.pages %}
-  {% if page.layout == 'single' %}
-    {% unless page.hidden %}
-      <!-- 여기서 single 레이아웃의 페이지 컨텐츠를 표시 -->
-      <a href="{{ page.url }}">{{ page.title }}</a><br>
-    {% endunless %}
-  {% endif %}
-{% endfor %}
+
 <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
 
 {% if paginator %}
