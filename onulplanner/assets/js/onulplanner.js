@@ -16,60 +16,49 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // 현재 시간을 기반으로 다음 30분 단위 계산
-    function getNext30MinutePreset() {
-        const now = new Date();
-        let hours = now.getHours();
-        let minutes = now.getMinutes();
-
-        // 30분 단위로 올림
-        minutes = minutes > 0 ? Math.ceil(minutes / 30) * 30 : 30;
-
-        // 다음 시간으로 넘기기
-        if (minutes === 60) {
-            minutes = 0;
-            hours += 1;
-        }
-
-        // 24시간제 조정
-        if (hours === 24) {
-            hours = 0;
-        }
-
-        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    // Format time to AM/PM with two digits
+    function formatAMPM(time) {
+        const [hour, minute] = time.split(":").map(Number);
+        const ampm = hour >= 12 ? "PM" : "AM";
+        const formattedHour = String(hour % 12 || 12).padStart(2, '0');
+        return `${formattedHour}:${String(minute).padStart(2, '0')} ${ampm}`;
     }
 
-    populateTimeDropdown(startTimeDropdown);
-    populateTimeDropdown(endTimeDropdown);
+    // Calculate default end time 3 hours from start time
+    function calculateEndTime(startTime) {
+        const [hour, minute] = startTime.split(":").map(Number);
+        let newHour = hour + 3; // Add 3 hours
+        if (newHour >= 24) newHour -= 24; // Adjust for 24-hour format
+        return `${String(newHour).padStart(2, '0')}:${String(minute).padStart(2, '0')}`;
+    }
 
-    // Set default preset (current time rounded to nearest 30 mins, and end time as 12:00 PM)
-    const current = new Date();
-    const defaultStartHour = current.getHours();
-    const defaultStartMinute = Math.floor(current.getMinutes() / 30) * 30; // Round to nearest 30 minutes
-    //startTimeDropdown.value = `${String(defaultStartHour).padStart(2, '0')}:${String(defaultStartMinute).padStart(2, '0')}`;
-    const next30MinutePreset = getNext30MinutePreset();
-    startTimeDropdown.value = next30MinutePreset;
-    endTimeDropdown.value = "12:00";
-
-    // Populate interval dropdown based on start and end times
+    // Populate interval dropdown with dynamic intervals
     function populateIntervals() {
-        intervalDropdown.innerHTML = ""; // Clear existing intervals
+        intervalDropdown.innerHTML = ""; // Clear existing options
+        const intervals = [
+            { label: "5 minutes", value: 5 },
+            { label: "15 minutes", value: 15 },
+            { label: "30 minutes", value: 30 }
+        ];
+
         const startTime = new Date(`1970-01-01T${startTimeDropdown.value}:00`);
         const endTime = new Date(`1970-01-01T${endTimeDropdown.value}:00`);
-        const maxInterval = Math.floor((endTime - startTime) / (1000 * 60)); // Calculate max interval in minutes
+        const maxInterval = Math.floor((endTime - startTime) / (1000 * 60));
 
-        for (let i = 5; i <= maxInterval; i += 5) {
-            const option = new Option(`${i} minutes`, i);
-            intervalDropdown.add(option);
+        if (maxInterval >= 60) {
+            for (let i = 60; i <= maxInterval; i += 30) {
+                const hours = Math.floor(i / 60);
+                const minutes = i % 60;
+                const label = `${hours > 0 ? hours + " hour" + (hours > 1 ? "s" : "") : ""}${minutes > 0 ? (hours > 0 ? " " : "") + minutes + " minutes" : ""}`;
+                intervals.push({ label, value: i });
+            }
         }
+
+        intervals.forEach(interval => {
+            const option = new Option(interval.label, interval.value);
+            intervalDropdown.add(option);
+        });
     }
-
-    // Update intervals when start or end time changes
-    startTimeDropdown.addEventListener("change", populateIntervals);
-    endTimeDropdown.addEventListener("change", populateIntervals);
-
-    // Initial interval population
-    populateIntervals();
 
     // Generate time slots
     generateButton.addEventListener("click", function () {
@@ -87,18 +76,49 @@ document.addEventListener("DOMContentLoaded", function () {
 
         for (let time = startTime; time < endTime; time.setMinutes(time.getMinutes() + interval)) {
             const timeStr = formatAMPM(`${String(time.getHours()).padStart(2, '0')}:${String(time.getMinutes()).padStart(2, '0')}`);
-            const input = document.createElement("div");
-            input.className = "time-slot";
-            input.innerHTML = `${timeStr} - <input type="text" placeholder="Enter task here">`;
-            container.appendChild(input);
+            const timeSlot = document.createElement("div");
+            timeSlot.className = "time-slot";
+
+            // Create time label
+            const timeLabel = document.createElement("div");
+            timeLabel.className = "time-label";
+            timeLabel.textContent = `${timeStr}`;
+
+            // Create task input
+            const taskInput = document.createElement("input");
+            taskInput.type = "text";
+            taskInput.placeholder = "Enter task here";
+
+            // Create checkbox
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+
+            // Append elements to time slot
+            timeSlot.appendChild(timeLabel);
+            timeSlot.appendChild(taskInput);
+            timeSlot.appendChild(checkbox);
+            container.appendChild(timeSlot);
         }
     });
 
-    // Format time to AM/PM
-    function formatAMPM(time) {
-        const [hour, minute] = time.split(":").map(Number);
-        const ampm = hour >= 12 ? "PM" : "AM";
-        const formattedHour = hour % 12 || 12;
-        return `${formattedHour}:${String(minute).padStart(2, '0')} ${ampm}`;
-    }
+    // Populate dropdowns on page load
+    populateTimeDropdown(startTimeDropdown);
+    populateTimeDropdown(endTimeDropdown);
+
+    // Set default start and end times
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMinute = Math.ceil(now.getMinutes() / 30) * 30; // Round to the next 30-minute mark
+    const defaultStartTime = `${String(currentHour).padStart(2, '0')}:${String(currentMinute === 60 ? 0 : currentMinute).padStart(2, '0')}`;
+    const defaultEndTime = calculateEndTime(defaultStartTime);
+
+    startTimeDropdown.value = defaultStartTime;
+    endTimeDropdown.value = defaultEndTime;
+
+    // Populate interval dropdown initially
+    populateIntervals();
+
+    // Update intervals when start or end time changes
+    startTimeDropdown.addEventListener("change", populateIntervals);
+    endTimeDropdown.addEventListener("change", populateIntervals);
 });
