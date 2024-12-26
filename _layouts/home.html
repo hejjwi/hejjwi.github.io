@@ -1,50 +1,35 @@
+{% raw %}
 ---
 layout: archive
 ---
 
 {{ content }}
 
-
 <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
 
-<!--
 {% if paginator %}
   {% assign posts = paginator.posts %}
 {% else %}
   {% assign posts = site.posts %}
 {% endif %}
 
-
-{% for single in site.singles %}
-  {% unless single.exclude_from_home %} # exclude_from_home이 true가 아니면 실행
-    <a href="{{ single.url }}">{{ single.title }}</a><br>
-  {% endunless %}
-{% endfor %}
-
 {% assign entries_layout = page.entries_layout | default: 'list' %}
--->
+
 <div class="entries-{{ entries_layout }}">
-<!--
   {% for post in posts %}
-    {% unless post.url == "/onulplanner/" or post.hidden %}
+    {% unless post.url == "/onulplanner/" or post.hidden or post.exclude_from_home %}
       {% include documents-collection.html entries=post type=entries_layout %}
     {% endunless %}
   {% endfor %}
 
-
-  {% for post in site.singles %}
-  {% unless post.exclude_from_home %} # exclude_from_home이 true가 아니면 실행
-    <a href="{{ post.url }}">{{ post.title }}</a><br>
-  {% endunless %}
-{% endfor %}
--->
-
+  <!-- Singles 처리를 위해 추가 -->
+  {% for single in site.singles %}
+    {% unless single.hidden or single.exclude_from_home %}
+      <a href="{{ single.url }}">{{ single.title }}</a><br>
+    {% endunless %}
+  {% endfor %}
 
 </div>
-<!--
- {% assign entries_layout = page.entries_layout | default: 'list' %}
- <div class="entries-{{ entries_layout }}">
-  {% include documents-collection.html entries=posts type=entries_layout %}
-</div>
--->
+
 {% include paginator.html %}
+{% endraw %}
