@@ -1,8 +1,4 @@
----
-layout: archive
----
-
-<!-- {{ content }} -->
+{{ content }} <!-- 여기서 content는 home.html 자체의 콘텐츠 -->
 
 <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
 
@@ -13,8 +9,22 @@ layout: archive
 {% endif %}
 
 {% assign entries_layout = page.entries_layout | default: 'list' %}
+
 <div class="entries-{{ entries_layout }}">
-  {% include documents-collection.html entries=posts type=entries_layout %}
+  {% for post in posts %}
+    {% unless post.hidden %}
+      {% include documents-collection.html entries=post type=entries_layout %}
+    {% endunless %}
+  {% endfor %}
+
+  <!-- single layout 페이지 제외 -->
+  {% for page in site.pages %}
+    {% if page.layout == 'single' %}
+      {% unless page.hidden %}
+        {% include documents-collection.html entries=page type=entries_layout %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
 </div>
 
 {% include paginator.html %}
