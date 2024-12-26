@@ -118,13 +118,7 @@ analytics:
 author:
   name             : "정해준"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : | 
-    I am an **amazing** person.
-    저는 영상개발자로 커리어를 시작하여
-    현재는 기술 심사역으로서 여러 기술 분야를 분석하고 있습니다. 
-
-                      
-                      # I am a boy."
+  bio              : 저는 영상AI엔지니어로 커리어를 시작하여 현재는 기술 심사역으로서 여러 기술 분야를 분석하고 있습니다.
   location         : "Seoul, Korea"
   email            :
   links:
