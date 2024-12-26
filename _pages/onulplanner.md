@@ -2,7 +2,7 @@
 layout: single
 title: ""
 description: "A custom scheduling page based on Minimal Mistakes theme."
-# permalink: /onulplanner/
+permalink: /onulplanner/
 ---
 
 <div class="page__content">
