@@ -18,13 +18,14 @@ layout: default
   {% include sidebar.html %}
 
   <div class="archive">
-    {% unless page.header.overlay_color or page.header.overlay_image %}
+    <!-- {% unless page.header.overlay_color or page.header.overlay_image %}
       <h1 id="page-title" class="page__title"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>{{ page.title }}</h1>
-    {% endunless %} 
-    
-  <!-- {% capture original_content %}{{ content }}{% endcapture %}
-  {% assign modified_content = original_content | replace: 'onulplanner', '' %}
-  {{ modified_content }} -->
-  {{ content }}
+    {% endunless %}  -->
+ 
+  {% capture original_content %}{{ content }}{% endcapture %}
+  {% assign filtered_content = original_content | replace: 'onulplanner', '' %}
+
+  <!-- Filtered content -->
+  {{ filtered_content }}
   </div>
 </div>
