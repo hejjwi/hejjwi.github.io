@@ -20,13 +20,7 @@ layout: default
   <div class="archive">
     {% unless page.header.overlay_color or page.header.overlay_image %}
       <h1 id="page-title" class="page__title"{% if page.locale %} lang="{{ page.locale }}"{% endif %}>{{ page.title }}</h1>
-    {% endunless %}
-
-    {% for post in site.posts %}
-    {% if post.url != "/onulplanner/" %}  <!-- 스케줄러 포스트를 제외 -->
-      <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-    {% endif %}
-    {% endfor %}
+    {% endunless %} 
     
     {{ content }}
   </div>
