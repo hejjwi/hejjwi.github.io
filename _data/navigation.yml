@@ -1,6 +1,6 @@
 # main links
 main:
-  - title: "Quick-Start Guide About"
+  - title: "About"
     url: https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/
   - title: "OnulPlanner"
     url: /onulplanner/
