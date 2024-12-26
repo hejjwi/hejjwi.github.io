@@ -7,7 +7,7 @@ layout: archive
 
 <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
 
-
+<!--
 {% if paginator %}
   {% assign posts = paginator.posts %}
 {% else %}
@@ -22,6 +22,7 @@ layout: archive
 {% endfor %}
 
 {% assign entries_layout = page.entries_layout | default: 'list' %}
+-->
 <div class="entries-{{ entries_layout }}">
 <!--
   {% for post in posts %}
@@ -29,14 +30,14 @@ layout: archive
       {% include documents-collection.html entries=post type=entries_layout %}
     {% endunless %}
   {% endfor %}
--->
+
 
   {% for post in site.singles %}
   {% unless post.exclude_from_home %} # exclude_from_home이 true가 아니면 실행
     <a href="{{ post.url }}">{{ post.title }}</a><br>
   {% endunless %}
 {% endfor %}
-
+-->
 
 
 </div>
