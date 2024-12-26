@@ -1,4 +1,3 @@
-{% raw %}
 ---
 layout: archive
 ---
@@ -14,22 +13,8 @@ layout: archive
 {% endif %}
 
 {% assign entries_layout = page.entries_layout | default: 'list' %}
-
 <div class="entries-{{ entries_layout }}">
-  {% for post in posts %}
-    {% unless post.url == "/onulplanner/" or post.hidden or post.exclude_from_home %}
-      {% include documents-collection.html entries=post type=entries_layout %}
-    {% endunless %}
-  {% endfor %}
-
-  <!-- Singles 처리를 위해 추가 -->
-  {% for single in site.singles %}
-    {% unless single.hidden or single.exclude_from_home %}
-      <a href="{{ single.url }}">{{ single.title }}</a><br>
-    {% endunless %}
-  {% endfor %}
-
+  {% include documents-collection.html entries=posts type=entries_layout %}
 </div>
 
 {% include paginator.html %}
-{% endraw %}
