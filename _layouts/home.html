@@ -2,35 +2,26 @@
 layout: archive
 ---
 
-{{ content }} <!-- 여기서 content는 home.html 자체의 콘텐츠 -->
-
+{{ content }}
+{% for page in site.pages %}
+  {% if page.layout == 'single' %}
+    {% unless page.hidden %}
+      <!-- 여기서 single 레이아웃의 페이지 컨텐츠를 표시 -->
+      <a href="{{ page.url }}">{{ page.title }}</a><br>
+    {% endunless %}
+  {% endif %}
+{% endfor %}
 <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
 
-{% for post in paginator.posts %}
-{% if post.layout == 'single' %}
-  {% unless post.hidden %}
-    {% include documents-collection.html entries=post type='list' %}
-  {% endunless %}
+{% if paginator %}
+  {% assign posts = paginator.posts %}
 {% else %}
-  {% include documents-collection.html entries=post type='list' %}
+  {% assign posts = site.posts %}
 {% endif %}
-{% endfor %}
 
-{% include paginator.html %}
-
-  <!-- {% assign entries_layout = page.entries_layout | default: 'list' %} -->
-
+{% assign entries_layout = page.entries_layout | default: 'list' %}
 <div class="entries-{{ entries_layout }}">
-  {% include documents-collection.html entries=post type=entries_layout %}
-
-  <!-- single layout 페이지 제외 -->
-  {% for page in site.pages %}
-    {% if page.layout == 'single' %}
-      {% unless page.hidden %}
-        {% include documents-collection.html entries=page type=entries_layout %}
-      {% endunless %}
-    {% endif %}
-  {% endfor %}
+  {% include documents-collection.html entries=posts type=entries_layout %}
 </div>
 
 {% include paginator.html %}
