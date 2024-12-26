@@ -4,20 +4,22 @@ layout: archive
 
 {{ content }}
 
-{% for page in site.pages %}
-  {% unless page.exclude_from_home %} # exclude_from_home이 true가 아니면 실행
-    <a href="{{ page.url }}">{{ page.title }}</a><br>
-  {% endunless %}
-{% endfor %}
 
 <h3 class="archive__subtitle">{{ site.data.ui-text[site.locale].recent_posts | default: "Recent Posts" }}</h3>
-<!--
+
+
 {% if paginator %}
   {% assign posts = paginator.posts %}
 {% else %}
   {% assign posts = site.posts %}
 {% endif %}
--->
+
+
+{% for single in site.singles %}
+  {% unless single.exclude_from_home %} # exclude_from_home이 true가 아니면 실행
+    <a href="{{ single.url }}">{{ single.title }}</a><br>
+  {% endunless %}
+{% endfor %}
 
 {% assign entries_layout = page.entries_layout | default: 'list' %}
 <div class="entries-{{ entries_layout }}">
@@ -29,7 +31,7 @@ layout: archive
   {% endfor %}
 -->
 
-  {% for post in site.posts %}
+  {% for post in site.singles %}
   {% unless post.exclude_from_home %} # exclude_from_home이 true가 아니면 실행
     <a href="{{ post.url }}">{{ post.title }}</a><br>
   {% endunless %}
