@@ -4,6 +4,7 @@ title: ""
 description: "A custom scheduling page based on Minimal Mistakes theme."
 permalink: /onulplanner/
 exclude_from_home: true
+exclude_from_pagination: true
 ---
 
 <div class="page__content">
